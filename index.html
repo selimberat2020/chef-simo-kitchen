@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chef Simo Kitchen | Modern Bistro & Şef Mutfağı · Odunpazarı, Eskişehir</title>
+  <meta name="description" content="Eskişehir Odunpazarı Büyükdere'de 4.9 Google puanıyla 10/10 hijyen ve şef dokunuşlu lezzetler: gurme burgerler, French tacos, makarnalar, sporcu menüleri, kahvaltı ve ev yapımı tatlılar." />
+
+  <!-- Google Fonts: Playfair Display (Editorial Serif) & Plus Jakarta Sans (Clean UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0C0E0D',
+            oliveSurface: '#141816',
+            oliveElevated: '#1B211D',
+            cream: '#F5EFE6',
+            stoneMuted: '#A9A59B',
+            copper: '#D97A36',
+            copperHover: '#C26727',
+            amberGold: '#E5A952',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Temel dark bistro zemini ve yumuşak tipografi */
+    html, body {
+      background-color: #0C0E0D;
+      color: #F5EFE6;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* İnce bistro grid/doku dokunuşu */
+    .bistro-grain {
+      background-image:
+        radial-gradient(circle at 80% 18%, rgba(217, 122, 54, 0.14), transparent 42%),
+        radial-gradient(circle at 12% 72%, rgba(229, 169, 82, 0.06), transparent 38%);
+    }
+
+    /* Hero görseli arkasında sıcak bakır ambiyans parıltısı */
+    .copper-halo {
+      background: radial-gradient(circle, rgba(217, 122, 54, 0.34) 0%, rgba(229, 169, 82, 0.12) 42%, rgba(12, 14, 13, 0) 72%);
+      filter: blur(28px);
+    }
+
+    /* Scroll-Reveal akıcı giriş animasyonu */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Menü kartı yumuşak geçiş animasyonu */
+    @keyframes cardSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .menu-enter {
+      animation: cardSlideUp 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Kampanya rozeti hafif nabız parıltısı */
+    @keyframes softPulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(217, 122, 54, 0.35); }
+      50% { box-shadow: 0 0 18px 2px rgba(217, 122, 54, 0.25); }
+    }
+    .campaign-pill {
+      animation: softPulseGlow 3s ease-in-out infinite;
+    }
+
+    /* Yatay filtre çubuğunda kaydırma çubuğunu gizle */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Harita iframe karanlık bistro tonlaması */
+    .map-bistro-frame {
+      filter: grayscale(20%) contrast(1.04) brightness(0.92);
+      transition: filter 0.35s ease;
+    }
+    .map-bistro-frame:hover {
+      filter: grayscale(0%) contrast(1) brightness(1);
+    }
+  </style>
+</head>
+<body class="bistro-grain selection:bg-copper/30 selection:text-cream">
+
+  <!-- ==================== 1. STICKY NAVBAR ==================== -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-obsidian/65 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- Sol: Zarif Serif Metin Logo -->
+      <a href="#top" class="group flex flex-col leading-none shrink-0" aria-label="Chef Simo Kitchen Ana Sayfa">
+        <span class="font-serif font-bold text-2xl sm:text-[1.7rem] text-cream tracking-tight group-hover:text-amberGold transition-colors duration-300">
+          Chef Simo
+        </span>
+        <span class="text-[10px] font-semibold uppercase tracking-[0.26em] text-copper mt-1">
+          KITCHEN · ESKİŞEHİR
+        </span>
+      </a>
+
+      <!-- Orta / Sağ: Masaüstü Gezinme Bağlantıları -->
+      <nav class="hidden lg:flex items-center gap-9 text-sm font-medium text-cream/80" aria-label="Ana Menü">
+        <a href="#menu" class="hover:text-amberGold transition-colors py-2">Menü</a>
+        <a href="#hikayemiz" class="hover:text-amberGold transition-colors py-2">Hikayemiz</a>
+        <a href="#yorumlar" class="hover:text-amberGold transition-colors py-2">Yorumlar</a>
+        <a href="#iletisim" class="hover:text-amberGold transition-colors py-2">Konum & İletişim</a>
+      </nav>
+
+      <!-- Sağ: Sepet Butonu + WhatsApp CTA + Mobil Menü -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Sepet Sayacı Butonu (Ürün eklenince vurgulanır) -->
+        <button type="button" id="nav-cart-btn" class="relative hidden sm:inline-flex items-center justify-center w-11 h-11 rounded-xl bg-oliveElevated border border-white/10 text-cream hover:border-copper/60 hover:text-amberGold transition-all active:scale-95" aria-label="Sipariş Sepetini Aç">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+            <path d="M3 6h18" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          <span id="nav-cart-badge" class="hidden absolute -top-1.5 -right-1.5 min-w-[20px] h-5 px-1 rounded-full bg-copper text-obsidian text-[11px] font-bold flex items-center justify-center shadow-md">0</span>
+        </button>
+
+        <!-- Ana WhatsApp / Sipariş CTA -->
+        <a href="https://wa.me/905465492602?text=Merhaba%20Chef%20Simo%20Kitchen%2C%20sipari%C5%9F%20veya%20rezervasyon%20i%C3%A7in%20ula%C5%9F%C4%B1yorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-gradient-to-r from-copper to-amberGold hover:from-copperHover hover:to-copper text-obsidian font-bold text-xs sm:text-sm shadow-lg shadow-copper/20 transition-all active:scale-95">
+          <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.188.109-1.922-.125-.453-.141-1.031-.328-1.766-.656-3.109-1.344-5.125-4.484-5.281-4.688-.156-.203-1.266-1.688-1.266-3.219s.797-2.281 1.078-2.594c.281-.313.625-.391.828-.391.203 0 .422.016.609.016.188 0 .453-.078.703.531.266.625.891 2.188.969 2.344.078.156.125.344.031.547-.094.203-.141.344-.297.516-.156.172-.328.391-.469.516-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.141.688-.078.188-.219.797-.922 1.016-1.234.219-.313.438-.266.734-.156.297.109 1.906.906 2.234 1.063.328.156.547.234.625.375.078.141.078.813-.172 1.516z"/>
+          </svg>
+          <span class="hidden xs:inline sm:inline">WhatsApp / Sipariş</span>
+          <span class="xs:hidden sm:hidden">Sipariş</span>
+        </a>
+
+        <!-- Mobil Hamburger Menü Butonu -->
+        <button type="button" id="mobile-menu-toggle" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl bg-oliveElevated border border-white/10 text-cream hover:border-copper/50 transition-colors" aria-label="Menüyü Aç" aria-expanded="false">
+          <svg id="icon-hamburger" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+          <svg id="icon-close" class="w-5 h-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobil Açılır Gezinme Çekmecesi -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-oliveSurface/98 backdrop-blur-xl border-b border-white/10 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+      <a href="#menu" class="mobile-nav-link block px-4 py-3.5 rounded-xl text-base font-semibold text-cream hover:bg-oliveElevated hover:text-amberGold transition-colors">Menü</a>
+      <a href="#hikayemiz" class="mobile-nav-link block px-4 py-3.5 rounded-xl text-base font-semibold text-cream hover:bg-oliveElevated hover:text-amberGold transition-colors">Hikayemiz</a>
+      <a href="#yorumlar" class="mobile-nav-link block px-4 py-3.5 rounded-xl text-base font-semibold text-cream hover:bg-oliveElevated hover:text-amberGold transition-colors">Yorumlar</a>
+      <a href="#iletisim" class="mobile-nav-link block px-4 py-3.5 rounded-xl text-base font-semibold text-cream hover:bg-oliveElevated hover:text-amberGold transition-colors">Konum & İletişim</a>
+      <div class="pt-3 mt-2 border-t border-white/10 grid grid-cols-2 gap-2.5">
+        <a href="tel:+905465492602" class="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-oliveElevated border border-white/10 text-cream text-sm font-semibold">
+          Hemen Ara
+        </a>
+        <a href="https://maps.google.com/?q=B%C3%BCy%C3%BCkdere%2C+Dalg%C4%B1%C3%A7+Sk.+No%3A9%2FA%2C+26000+Odunpazar%C4%B1%2FEski%C5%9Fehir" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 py-3.5 rounded-xl bg-copper/15 border border-copper/35 text-amberGold text-sm font-semibold">
+          Yol Tarifi
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ==================== 2. HERO SECTION ==================== -->
+    <section class="relative min-h-[92vh] pt-28 pb-14 lg:pt-32 lg:pb-16 flex flex-col justify-center overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          
+          <!-- Sol Kolon: Editoryal Tipografi & Eylem Çağrıları -->
+          <div class="lg:col-span-6 space-y-6 z-10 reveal">
+            <!-- Üst Rozetler: Google Puanı + Kampanya -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-oliveElevated/90 border border-white/10 text-xs sm:text-sm font-medium text-cream shadow-sm">
+                <span class="text-amberGold text-sm leading-none" aria-hidden="true">★</span>
+                <span class="font-bold">4.9</span>
+                <span class="text-stoneMuted">Google Puanı (55 Yorum)</span>
+              </div>
+              <div class="campaign-pill inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-copper/15 border border-copper/45 text-xs sm:text-sm font-semibold text-amberGold">
+                <span>🎉 %10 İndirim + İkram Fırsatı</span>
+              </div>
+            </div>
+
+            <!-- Ana Serif Başlık -->
+            <h1 class="font-serif font-semibold text-4xl sm:text-5xl lg:text-[3.75rem] leading-[1.09] tracking-tight text-cream">
+              10/10 Hijyen, <br class="hidden sm:block" />
+              <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-copper via-amberGold to-amberGold">Şef Dokunuşlu</span> Lezzetler.
+            </h1>
+
+            <!-- Alt Başlık -->
+            <p class="text-base sm:text-lg leading-relaxed text-stoneMuted max-w-xl">
+              Eskişehir Odunpazarı'nda taze malzemelerle hazırlanan gurme burgerler, French tacos, makarnalar, sporcu menüleri ve özel tatlılar.
+            </p>
+
+            <!-- Eylem Butonları -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+              <a href="#menu" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-copper hover:bg-copperHover text-obsidian font-bold text-sm sm:text-base shadow-xl shadow-copper/25 transition-all hover:-translate-y-0.5 active:scale-[0.98]">
+                <span>Menüyü İncele</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+              </a>
+              <a href="https://maps.google.com/?q=B%C3%BCy%C3%BCkdere%2C+Dalg%C4%B1%C3%A7+Sk.+No%3A9%2FA%2C+26000+Odunpazar%C4%B1%2FEski%C5%9Fehir" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-transparent hover:bg-oliveElevated border border-white/20 hover:border-amberGold/50 text-cream font-semibold text-sm sm:text-base transition-all hover:-translate-y-0.5 active:scale-[0.98]">
+                <svg class="w-4 h-4 text-amberGold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>Yol Tarifi Al</span>
+              </a>
+            </div>
+
+            <!-- Online Sipariş Platformları Güven Şeridi -->
+            <div class="pt-5 border-t border-white/10 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm text-stoneMuted">
+              <span class="uppercase tracking-[0.18em] text-[11px] font-semibold text-copper">Online Sipariş:</span>
+              <span class="text-cream/90 font-medium">Yemeksepeti</span>
+              <span class="text-white/20">•</span>
+              <span class="text-cream/90 font-medium">Trendyol Yemek</span>
+              <span class="text-white/20">•</span>
+              <span class="text-cream/90 font-medium">Getir Yemek</span>
+            </div>
+          </div>
+
+          <!-- Sağ Kolon: Karanlık Zeminle Bütünleşen Gurme Burger Vitrini -->
+          <div class="lg:col-span-6 relative flex items-center justify-center reveal" style="transition-delay: 120ms;">
+            <!-- Arka Plan Bakır Ambiyans Işıltısı -->
+            <div class="absolute inset-0 m-auto w-72 h-72 sm:w-[440px] sm:h-[440px] rounded-full copper-halo pointer-events-none"></div>
+
+            <!-- Ana Görsel Çerçevesi -->
+            <div class="relative w-full max-w-lg mx-auto">
+              <div class="relative rounded-[2rem] overflow-hidden bg-[#050606] border border-copper/25 shadow-[0_30px_90px_-20px_rgba(0,0,0,0.9)] group">
+                <img
+                  src="./chef simo kitchen.png"
+                  alt="Chef Simo Kitchen Double Mantarlı Cheddar Gurme Burger, altın sarısı patates ve özel sos"
+                  class="w-full h-auto aspect-[4/3] object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                  onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1000&q=85';}else{this.onerror=null;this.src='https://placehold.co/960x720/141816/E5A952?text=Chef+Simo+Signature+Burger';}"
+                />
+                <!-- Kenarlara yumuşak sinematik karanlık geçiş -->
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian/85 via-transparent to-obsidian/20 pointer-events-none"></div>
+
+                <!-- Üst Sağ Küçük Şef Damgası -->
+                <div class="absolute top-4 right-4 px-3 py-1.5 rounded-full bg-obsidian/75 backdrop-blur-md border border-amberGold/30 text-[11px] font-semibold tracking-wider uppercase text-amberGold">
+                  Şefin İmzası
+                </div>
+
+                <!-- Alt Yüzen Cam Bilgi Rozeti -->
+                <div class="absolute bottom-4 inset-x-4 sm:left-5 sm:right-5 rounded-2xl bg-obsidian/80 backdrop-blur-md border border-white/15 px-4 py-3.5 flex items-center justify-between gap-3">
+                  <div>
+                    <p class="text-xs font-medium text-stoneMuted">Ortalama Kişi Başı · Odunpazarı</p>
+                    <p class="text-sm sm:text-base font-bold text-cream mt-0.5">Kişi Başı ₺200–400 · Paket & Gel-Al</p>
+                  </div>
+                  <div class="w-10 h-10 rounded-xl bg-copper/20 border border-copper/40 flex items-center justify-center shrink-0 text-amberGold">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 3. ÖNE ÇIKANLAR & MEKAN HİKAYESİ ==================== -->
+    <section id="hikayemiz" class="py-20 sm:py-28 relative border-t border-white/5 bg-oliveSurface/60">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+          
+          <!-- Sol Kolon: Editoryal Kahvaltı & Magnolia Görsel Vitrini -->
+          <div class="lg:col-span-6 reveal">
+            <div class="relative">
+              <!-- Dekoratif ince bakır arka çerçeve -->
+              <div class="hidden sm:block absolute -top-4 -left-4 w-3/4 h-3/4 rounded-3xl border border-copper/35 pointer-events-none"></div>
+
+              <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-oliveElevated">
+                <img
+                  src="./chef simo kitchen-2.webp"
+                  alt="Chef Simo Kitchen taze kahvaltı tabağı, sıcak gözleme, seçme zeytinler, soğuk ayran ve ev yapımı magnolia"
+                  class="w-full h-auto aspect-[4/3] object-cover hover:scale-[1.03] transition-transform duration-700"
+                  onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85';}else{this.onerror=null;this.src='https://placehold.co/960x720/1B211D/F5EFE6?text=Chef+Simo+Kahvalt%C4%B1+%26+Tatli';}"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-obsidian/70 via-transparent to-transparent pointer-events-none"></div>
+              </div>
+
+              <!-- Yüzen Koyu Editoryal Kart -->
+              <div class="relative sm:absolute sm:-bottom-6 sm:right-6 mt-4 sm:mt-0 max-w-sm rounded-2xl bg-obsidian/95 backdrop-blur-xl border border-copper/35 p-4 sm:p-5 shadow-2xl">
+                <div class="flex items-start gap-3.5">
+                  <div class="w-10 h-10 rounded-xl bg-copper/15 border border-copper/30 flex items-center justify-center text-amberGold shrink-0">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+                      <line x1="6" x2="18" y1="17" y2="17" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="font-serif font-semibold text-base text-cream leading-snug">Odunpazarı · Büyükdere'nin Samimi Şef Mutfağı</p>
+                    <p class="text-xs text-stoneMuted mt-1">Güler yüzlü ev sahipliği, açık hava keyfi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sağ Kolon: Samimi Hikaye Anlatımı -->
+          <div class="lg:col-span-6 space-y-6 lg:pt-2 reveal" style="transition-delay: 100ms;">
+            <div>
+              <span class="inline-block text-xs font-bold uppercase tracking-[0.24em] text-copper mb-3">Hikayemiz & Mutfağımız</span>
+              <h2 class="font-serif font-semibold text-3xl sm:text-4xl text-cream leading-tight">
+                Her Tabakta Özen, Her Masada <span class="italic text-amberGold">Samimiyet</span>
+              </h2>
+            </div>
+
+            <div class="space-y-4 text-base leading-relaxed text-stoneMuted">
+              <p>
+                Chef Simo Kitchen'da yola çıkarken tek bir amacımız vardı: hızlı servis rahatlığını gerçek bir şef mutfağının tazeliği ve 10/10 hijyen standardıyla buluşturmak. Mutfağımıza giren her sebzeyi, sosu ve eti günlük olarak özenle seçiyor; kahvaltıdan sulu gurme burgerlere, dengeli sporcu bowl'larından ev yapımı tatlılara kadar geniş bir seçkiyi aynı titizlikle hazırlıyoruz.
+              </p>
+              <p>
+                İster okul çıkışında hızlıca doymak için uğrayın, ister patili dostunuzla açık hava bölümümüzde keyifli bir akşam geçirin, isterseniz de evinizin konforunda sıcacık sipariş verin — Büyükdere'de güler yüzle karşılanacağınız samimi adresiniz olmaya devam ediyoruz.
+              </p>
+            </div>
+
+            <!-- Hızlı İstatistik Şeridi -->
+            <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/10">
+              <div>
+                <p class="font-serif font-bold text-2xl sm:text-3xl text-amberGold">4.9</p>
+                <p class="text-xs text-stoneMuted mt-1">Google Memnuniyeti</p>
+              </div>
+              <div>
+                <p class="font-serif font-bold text-2xl sm:text-3xl text-cream">10/10</p>
+                <p class="text-xs text-stoneMuted mt-1">Mutfak Hijyeni</p>
+              </div>
+              <div>
+                <p class="font-serif font-bold text-2xl sm:text-3xl text-cream">12+</p>
+                <p class="text-xs text-stoneMuted mt-1">Şef Kategorisi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 İkonik Özellik Rozeti Kartı -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16 lg:mt-20">
+          <!-- Rozet 1 -->
+          <div class="reveal rounded-2xl bg-oliveElevated/80 border border-white/10 hover:border-copper/40 p-6 transition-all duration-300 hover:-translate-y-1">
+            <div class="w-12 h-12 rounded-xl bg-copper/15 border border-copper/30 flex items-center justify-center text-amberGold mb-4">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-xl text-cream">10/10 Hijyen & Taze Malzeme</h3>
+            <p class="text-sm text-stoneMuted leading-relaxed mt-2">
+              Günlük taze seçilen ürünlerle özenli, şeffaf ve tertemiz mutfak standartlarında hazırlanan lezzetler.
+            </p>
+          </div>
+
+          <!-- Rozet 2 -->
+          <div class="reveal rounded-2xl bg-oliveElevated/80 border border-white/10 hover:border-copper/40 p-6 transition-all duration-300 hover:-translate-y-1" style="transition-delay: 80ms;">
+            <div class="w-12 h-12 rounded-xl bg-copper/15 border border-copper/30 flex items-center justify-center text-amberGold mb-4">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+                <path d="M7 2v20" />
+                <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-xl text-cream">Geniş Şef Menüsü & Sporcu Tabakları</h3>
+            <p class="text-sm text-stoneMuted leading-relaxed mt-2">
+              Kahvaltıdan French tacos'a, yüksek proteinli bowl'lardan ev yapımı taze tatlılara her damak tadına uygun seçenekler.
+            </p>
+          </div>
+
+          <!-- Rozet 3 -->
+          <div class="reveal rounded-2xl bg-oliveElevated/80 border border-white/10 hover:border-copper/40 p-6 transition-all duration-300 hover:-translate-y-1" style="transition-delay: 160ms;">
+            <div class="w-12 h-12 rounded-xl bg-copper/15 border border-copper/30 flex items-center justify-center text-amberGold mb-4">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="4" r="2" />
+                <circle cx="18" cy="8" r="2" />
+                <circle cx="20" cy="16" r="2" />
+                <path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z" />
+              </svg>
+            </div>
+            <h3 class="font-serif font-semibold text-xl text-cream">Açık Hava & Evcil Hayvan Dostu</h3>
+            <p class="text-sm text-stoneMuted leading-relaxed mt-2">
+              Ferah açık hava oturma bölümü, minikler için özel çocuk menüsü ve dış alanda patili dostlarınıza serbest ortam.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 4. İNTERAKTİF DİJİTAL MENÜ ==================== -->
+    <section id="menu" class="py-20 sm:py-28 relative border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Bölüm Başlığı & Hızlı Arama -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
+          <div>
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.24em] text-copper mb-3">Ağız Sulandıran Seçki</span>
+            <h2 class="font-serif font-semibold text-3xl sm:text-4xl lg:text-[2.75rem] text-cream leading-tight">
+              Şefin Dijital Menüsü
+            </h2>
+            <p class="text-sm sm:text-base text-stoneMuted mt-2 max-w-xl">
+              Beğendiğiniz lezzetleri sepete ekleyip tek tıkla WhatsApp üzerinden paket servis veya gel-al siparişi oluşturabilirsiniz.
+            </p>
+          </div>
+
+          <!-- Canlı Menü Arama Kutusu -->
+          <div class="relative w-full lg:w-80 shrink-0">
+            <svg class="w-4 h-4 text-stoneMuted absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input
+              type="search"
+              id="menu-search"
+              placeholder="Burger, makarna, magnolia ara..."
+              class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-oliveSurface border border-white/10 focus:border-copper focus:outline-none text-sm text-cream placeholder:text-stoneMuted/70 transition-colors"
+              aria-label="Menüde yemek ara"
+            />
+          </div>
+        </div>
+
+        <!-- Kategori Filtre Sekmeleri (Mobilde Başparmakla Rahat Yatay Kaydırma) -->
+        <div role="tablist" aria-label="Menü Kategorileri" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-3 mb-8 reveal">
+          <button type="button" data-category="featured" class="menu-tab shrink-0 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-copper text-obsidian shadow-lg shadow-copper/20">
+            Öne Çıkanlar
+          </button>
+          <button type="button" data-category="burger-tacos" class="menu-tab shrink-0 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-oliveSurface text-cream/80 hover:text-cream border border-white/10 hover:border-copper/40">
+            Burger & French Tacos
+          </button>
+          <button type="button" data-category="pasta-bowl" class="menu-tab shrink-0 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-oliveSurface text-cream/80 hover:text-cream border border-white/10 hover:border-copper/40">
+            Makarna, Salata & Bowl
+          </button>
+          <button type="button" data-category="breakfast-sandwich" class="menu-tab shrink-0 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-oliveSurface text-cream/80 hover:text-cream border border-white/10 hover:border-copper/40">
+            Kahvaltı & Sandviç
+          </button>
+          <button type="button" data-category="dessert-drinks" class="menu-tab shrink-0 px-5 py-3 rounded-xl text-sm font-semibold transition-all bg-oliveSurface text-cream/80 hover:text-cream border border-white/10 hover:border-copper/40">
+            Tatlı & İçecekler
+          </button>
+        </div>
+
+        <!-- Menü Ürünleri Izgarası (JS ile Dinamik Üretilir) -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Dinamik Kartlar -->
+        </div>
+
+        <!-- Arama Sonucu Boş Durumu -->
+        <div id="menu-empty" class="hidden text-center py-14 px-6 rounded-3xl bg-oliveSurface border border-white/10">
+          <p class="font-serif text-xl text-cream">Aradığınız lezzeti bulamadık</p>
+          <p class="text-sm text-stoneMuted mt-1">Farklı bir kelime deneyebilir veya tüm öne çıkanlara dönebilirsiniz.</p>
+          <button type="button" id="reset-search-btn" class="mt-4 px-5 py-2.5 rounded-xl bg-copper text-obsidian text-sm font-bold hover:bg-copperHover transition-colors">
+            Filtreyi Temizle
+          </button>
+        </div>
+
+        <!-- Online Sipariş Platformları Barı -->
+        <div class="mt-12 rounded-2xl bg-oliveSurface/90 border border-white/10 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-4 reveal">
+          <div class="text-center md:text-left">
+            <p class="font-serif font-semibold text-lg text-cream">Dilerseniz Online Yemek Platformlarından da Sipariş Verebilirsiniz</p>
+            <p class="text-xs sm:text-sm text-stoneMuted mt-0.5">Paket servis ve gel-al seçenekleriyle sıcacık kapınızda.</p>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-2.5">
+            <a href="https://www.yemeksepeti.com/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-oliveElevated hover:bg-[#FA0050]/20 border border-white/10 hover:border-[#FA0050]/50 text-cream text-xs sm:text-sm font-semibold transition-all">
+              Yemeksepeti
+            </a>
+            <a href="https://www.trendyol.com/yemek" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-oliveElevated hover:bg-[#F27A1A]/20 border border-white/10 hover:border-[#F27A1A]/50 text-cream text-xs sm:text-sm font-semibold transition-all">
+              Trendyol Yemek
+            </a>
+            <a href="https://getir.com/yemek/" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-oliveElevated hover:bg-[#5D3EBC]/25 border border-white/10 hover:border-[#7849F7]/50 text-cream text-xs sm:text-sm font-semibold transition-all">
+              Getir Yemek
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. SOSYAL KANIT (GOOGLE YORUMLARI VİTRİNİ) ==================== -->
+    <section id="yorumlar" class="py-20 sm:py-28 bg-oliveSurface/70 border-t border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Editoryal Puan Merkezi -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-14 reveal">
+          <div class="space-y-2">
+            <span class="inline-block text-xs font-bold uppercase tracking-[0.24em] text-copper">Misafir Deneyimleri</span>
+            <h2 class="font-serif font-semibold text-3xl sm:text-4xl text-cream">
+              Misafirlerimiz Neden Bizi Tercih Ediyor?
+            </h2>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-5 rounded-2xl bg-obsidian/90 border border-amberGold/25 px-6 py-4 shadow-xl">
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif font-bold text-5xl text-cream leading-none">4.9</span>
+              <span class="text-sm text-stoneMuted">/ 5</span>
+            </div>
+            <div class="space-y-1">
+              <div class="flex items-center gap-0.5 text-amberGold text-lg leading-none" aria-label="5 üzerinden 4.9 yıldız">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="text-xs font-medium text-stoneMuted">55 Google Yorumu</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Chef+Simo+Kitchen+Odunpazari+Eskisehir" target="_blank" rel="noopener noreferrer" class="sm:ml-2 px-4 py-2.5 rounded-xl bg-oliveElevated hover:bg-copper text-cream hover:text-obsidian border border-white/10 hover:border-copper text-xs font-bold transition-all">
+              Google'da İncele
+            </a>
+          </div>
+        </div>
+
+        <!-- 3 Gerçek Google Yorumu Kartı -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Yorum 1: Yahya İlgün -->
+          <article class="reveal rounded-3xl bg-obsidian/85 border border-white/10 hover:border-copper/35 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-0.5 text-amberGold text-sm">★★★★★</div>
+                <span class="font-serif text-4xl leading-none text-copper/40 select-none" aria-hidden="true">“</span>
+              </div>
+              <p class="text-base leading-relaxed text-cream/90">
+                "Mükemmel lezzet, 10/10 hijyen ve güler yüz; daha ne olsun..."
+              </p>
+            </div>
+            <div class="mt-7 pt-5 border-t border-white/10 flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-full bg-copper/20 border border-copper/40 text-amberGold font-bold text-xs flex items-center justify-center">Yİ</div>
+              <div>
+                <h3 class="text-sm font-bold text-cream">Yahya İlgün</h3>
+                <p class="text-xs text-stoneMuted">Google Yorumu · 2 ay önce</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Yorum 2: Öykü Sarıyol -->
+          <article class="reveal rounded-3xl bg-obsidian/85 border border-white/10 hover:border-copper/35 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg" style="transition-delay: 90ms;">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-0.5 text-amberGold text-sm">★★★★★</div>
+                <span class="font-serif text-4xl leading-none text-copper/40 select-none" aria-hidden="true">“</span>
+              </div>
+              <p class="text-base leading-relaxed text-cream/90">
+                "Çok güzel, çok temiz bir işletme; sahibi de çok kibar, sıcak samimi bir ortamı var. Düzenli olarak buradan yemek yiyoruz, herkese tavsiye ederim."
+              </p>
+            </div>
+            <div class="mt-7 pt-5 border-t border-white/10 flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-full bg-amberGold/15 border border-amberGold/35 text-amberGold font-bold text-xs flex items-center justify-center">ÖS</div>
+              <div>
+                <h3 class="text-sm font-bold text-cream">Öykü Sarıyol</h3>
+                <p class="text-xs text-stoneMuted">Google Yorumu · 2 ay önce</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Yorum 3: Yunus Damar -->
+          <article class="reveal rounded-3xl bg-obsidian/85 border border-white/10 hover:border-copper/35 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-lg" style="transition-delay: 180ms;">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center gap-0.5 text-amberGold text-sm">★★★★★</div>
+                <span class="font-serif text-4xl leading-none text-copper/40 select-none" aria-hidden="true">“</span>
+              </div>
+              <p class="text-base leading-relaxed text-cream/90">
+                "Yiyecekler mükemmel, hizmet 10 numara. İster okul çıkışı acıkayım ister keyif için geleyim istersem de eve söyleyeyim, ilk aklıma gelecek yer burası olur artık."
+              </p>
+            </div>
+            <div class="mt-7 pt-5 border-t border-white/10 flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-full bg-oliveElevated border border-white/20 text-cream font-bold text-xs flex items-center justify-center">YD</div>
+              <div>
+                <h3 class="text-sm font-bold text-cream">Yunus Damar</h3>
+                <p class="text-xs text-stoneMuted">Google Yorumu · 1 ay önce</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. ÇALIŞMA SAATLERİ, KONUM VE İLETİŞİM ==================== -->
+    <section id="iletisim" class="py-20 sm:py-28 border-t border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+          
+          <!-- Sol Kolon: Adres, Saatler, Hizmet Etiketleri & Eylem Butonları -->
+          <div class="lg:col-span-6 flex flex-col justify-between space-y-8 reveal">
+            <div>
+              <span class="inline-block text-xs font-bold uppercase tracking-[0.24em] text-copper mb-3">Bizi Ziyaret Edin</span>
+              <h2 class="font-serif font-semibold text-3xl sm:text-4xl text-cream">Konum & İletişim</h2>
+              <p class="text-base text-stoneMuted mt-3 leading-relaxed">
+                Büyükdere, Dalgıç Sk. No:9/A, 26000 Odunpazarı / Eskişehir
+              </p>
+
+              <!-- Hizmet Etiketleri -->
+              <div class="flex flex-wrap gap-2 mt-5">
+                <span class="px-3.5 py-1.5 rounded-full bg-oliveElevated border border-white/10 text-xs font-medium text-cream/90">Açık Hava Bölümü</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-oliveElevated border border-white/10 text-xs font-medium text-cream/90">Çocuk Menüsü</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-oliveElevated border border-white/10 text-xs font-medium text-cream/90">Evcil Hayvan Dostu (Açık Alan)</span>
+                <span class="px-3.5 py-1.5 rounded-full bg-oliveElevated border border-white/10 text-xs font-medium text-cream/90">Paket Servis & Gel-Al</span>
+              </div>
+            </div>
+
+            <!-- Çalışma Saatleri Tablosu -->
+            <div class="rounded-2xl bg-oliveSurface border border-white/10 p-5 sm:p-6">
+              <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+                <h3 class="font-serif font-semibold text-lg text-cream">Çalışma Saatleri</h3>
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Her Gün Hizmette
+                </span>
+              </div>
+              <dl class="divide-y divide-white/5 text-sm mt-1">
+                <div class="py-2.5 flex items-center justify-between">
+                  <dt class="text-stoneMuted">Pazartesi – Cuma</dt>
+                  <dd class="font-semibold text-cream">10:00 – 23:00</dd>
+                </div>
+                <div class="py-2.5 flex items-center justify-between">
+                  <dt class="text-stoneMuted">Cumartesi – Pazar</dt>
+                  <dd class="font-semibold text-cream">10:00 – 23:00</dd>
+                </div>
+              </dl>
+              <p class="text-xs text-stoneMuted/80 mt-3 pt-3 border-t border-white/5">
+                * Özel gün ve güncel çalışma saatleri için bizi arayabilirsiniz.
+              </p>
+            </div>
+
+            <!-- Büyük Başparmak Dostu İletişim Butonları -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <a href="tel:+905465492602" class="flex items-center justify-center gap-2.5 px-5 py-4 rounded-2xl bg-oliveElevated hover:bg-oliveElevated/80 border border-white/15 hover:border-amberGold/50 text-cream font-bold text-sm transition-all active:scale-[0.98]">
+                <svg class="w-4 h-4 text-amberGold shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Hemen Ara: 0546 549 26 02</span>
+              </a>
+              <a href="https://wa.me/905465492602?text=Merhaba%20Chef%20Simo%20Kitchen%2C%20rezervasyon%20veya%20sipari%C5%9F%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2.5 px-5 py-4 rounded-2xl bg-copper hover:bg-copperHover text-obsidian font-bold text-sm shadow-lg shadow-copper/20 transition-all active:scale-[0.98]">
+                <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.188.109-1.922-.125-.453-.141-1.031-.328-1.766-.656-3.109-1.344-5.125-4.484-5.281-4.688-.156-.203-1.266-1.688-1.266-3.219s.797-2.281 1.078-2.594c.281-.313.625-.391.828-.391.203 0 .422.016.609.016.188 0 .453-.078.703.531.266.625.891 2.188.969 2.344.078.156.125.344.031.547-.094.203-.141.344-.297.516-.156.172-.328.391-.469.516-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.141.688-.078.188-.219.797-.922 1.016-1.234.219-.313.438-.266.734-.156.297.109 1.906.906 2.234 1.063.328.156.547.234.625.375.078.141.078.813-.172 1.516z"/>
+                </svg>
+                <span>WhatsApp Rezervasyon & Sipariş</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Sağ Kolon: Gömülü Google Haritalar Alanı -->
+          <div class="lg:col-span-6 flex flex-col reveal" style="transition-delay: 100ms;">
+            <div class="flex-1 min-h-[360px] lg:min-h-[450px] rounded-3xl overflow-hidden border border-white/15 bg-oliveSurface shadow-2xl relative">
+              <iframe
+                title="Chef Simo Kitchen Google Haritalar Konumu"
+                src="https://maps.google.com/maps?q=B%C3%BCy%C3%BCkdere%2C%20Dalg%C4%B1%C3%A7%20Sk.%20No%3A9%2FA%2C%20Odunpazar%C4%B1%2C%20Eski%C5%9Fehir&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                class="w-full h-full min-h-[360px] lg:min-h-[450px] border-0 map-bistro-frame"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="mt-4 flex justify-end">
+              <a href="https://maps.google.com/?q=B%C3%BCy%C3%BCkdere%2C+Dalg%C4%B1%C3%A7+Sk.+No%3A9%2FA%2C+26000+Odunpazar%C4%B1%2FEski%C5%9Fehir" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold text-amberGold hover:text-cream transition-colors">
+                <span>Google Haritalar'da Aç</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" x2="21" y1="14" y2="3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== 7. FOOTER ==================== -->
+  <footer class="bg-[#080A09] border-t border-white/10 pt-14 pb-24 sm:pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-10 border-b border-white/10">
+        
+        <!-- Marka Alanı -->
+        <div class="md:col-span-5 space-y-3">
+          <a href="#top" class="inline-block">
+            <span class="font-serif font-bold text-2xl text-cream tracking-tight">Chef Simo Kitchen</span>
+          </a>
+          <p class="text-sm text-stoneMuted max-w-sm leading-relaxed">
+            Büyükdere, Odunpazarı'nda modern bistro dokunuşu, taze malzemeler ve 10/10 hijyen anlayışıyla hizmetinizdeyiz.
+          </p>
+          <div class="flex flex-wrap gap-2 pt-2">
+            <span class="px-3 py-1 rounded-full bg-oliveSurface border border-white/10 text-[11px] font-semibold text-stoneMuted">Yemeksepeti</span>
+            <span class="px-3 py-1 rounded-full bg-oliveSurface border border-white/10 text-[11px] font-semibold text-stoneMuted">Trendyol Yemek</span>
+            <span class="px-3 py-1 rounded-full bg-oliveSurface border border-white/10 text-[11px] font-semibold text-stoneMuted">Getir Yemek</span>
+          </div>
+        </div>
+
+        <!-- Hızlı Bağlantılar -->
+        <div class="md:col-span-4 space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-copper">Hızlı Erişim</h3>
+          <ul class="grid grid-cols-2 gap-y-2.5 text-sm text-stoneMuted">
+            <li><a href="#menu" class="hover:text-cream transition-colors">Dijital Menü</a></li>
+            <li><a href="#hikayemiz" class="hover:text-cream transition-colors">Hikayemiz</a></li>
+            <li><a href="#yorumlar" class="hover:text-cream transition-colors">Google Yorumları</a></li>
+            <li><a href="#iletisim" class="hover:text-cream transition-colors">Konum & İletişim</a></li>
+          </ul>
+        </div>
+
+        <!-- Sosyal İkonlar -->
+        <div class="md:col-span-3 space-y-3">
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-copper">Bağlantıda Kalın</h3>
+          <div class="flex items-center gap-3">
+            <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-oliveSurface border border-white/10 hover:border-copper text-cream hover:text-amberGold flex items-center justify-center transition-all" aria-label="Instagram">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            <a href="https://wa.me/905465492602" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-oliveSurface border border-white/10 hover:border-copper text-cream hover:text-amberGold flex items-center justify-center transition-all" aria-label="WhatsApp">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12.031 2c-5.516 0-9.969 4.453-9.969 9.969 0 1.766.469 3.484 1.344 5l-1.406 5.156 5.281-1.375c1.469.797 3.109 1.219 4.75 1.219 5.516 0 9.969-4.453 9.969-9.969S17.547 2 12.031 2zm5.813 14.125c-.25.703-1.438 1.344-2 1.422-.516.078-1.188.109-1.922-.125-.453-.141-1.031-.328-1.766-.656-3.109-1.344-5.125-4.484-5.281-4.688-.156-.203-1.266-1.688-1.266-3.219s.797-2.281 1.078-2.594c.281-.313.625-.391.828-.391.203 0 .422.016.609.016.188 0 .453-.078.703.531.266.625.891 2.188.969 2.344.078.156.125.344.031.547-.094.203-.141.344-.297.516-.156.172-.328.391-.469.516-.156.156-.328.328-.141.641.188.313.844 1.391 1.813 2.25 1.25 1.109 2.297 1.453 2.609 1.609.313.156.5.141.688-.078.188-.219.797-.922 1.016-1.234.219-.313.438-.266.734-.156.297.109 1.906.906 2.234 1.063.328.156.547.234.625.375.078.141.078.813-.172 1.516z"/>
+              </svg>
+            </a>
+            <a href="https://maps.google.com/?q=B%C3%BCy%C3%BCkdere%2C+Dalg%C4%B1%C3%A7+Sk.+No%3A9%2FA%2C+26000+Odunpazar%C4%B1%2FEski%C5%9Fehir" target="_blank" rel="noopener noreferrer" class="w-11 h-11 rounded-xl bg-oliveSurface border border-white/10 hover:border-copper text-cream hover:text-amberGold flex items-center justify-center transition-all" aria-label="Google Haritalar">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Telif Hakkı -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stoneMuted/75">
+        <p>© 2026 Chef Simo Kitchen · Tüm Hakları Saklıdır.</p>
+        <p>Büyükdere, Odunpazarı / Eskişehir</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== YÜZEN SİPARİŞ ÇUBUĞU (FLOATING ORDER PILL) ==================== -->
+  <div id="floating-cart-pill" class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-md transform translate-y-28 opacity-0 pointer-events-none transition-all duration-300">
+    <button type="button" id="open-drawer-from-pill" class="w-full rounded-2xl bg-gradient-to-r from-copper to-amberGold p-[1px] shadow-[0_18px_45px_-10px_rgba(217,122,54,0.55)] active:scale-[0.98] transition-transform">
+      <div class="w-full rounded-[15px] bg-obsidian/95 backdrop-blur-xl px-4 py-3.5 flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span id="pill-count" class="w-9 h-9 rounded-xl bg-copper text-obsidian font-extrabold text-sm flex items-center justify-center">0</span>
+          <div class="text-left">
+            <p class="text-[11px] font-medium text-stoneMuted">Sipariş Sepetiniz</p>
+            <p id="pill-total" class="text-base font-bold text-cream leading-tight">₺0</p>
+          </div>
+        </div>
+        <span class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-copper text-obsidian text-xs font-bold">
+          <span>Sepeti Gör</span>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ==================== YAN AÇILIR SİPARİŞ SEPETİ (SLIDE-OVER DRAWER) ==================== -->
+  <div id="cart-drawer-overlay" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" aria-hidden="true"></div>
+
+  <aside id="cart-drawer" class="fixed top-0 right-0 bottom-0 z-50 w-full max-w-md bg-oliveSurface border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col" aria-label="Sipariş Özeti">
+    <!-- Çekmece Üst Başlık -->
+    <div class="px-6 py-5 border-b border-white/10 flex items-center justify-between">
+      <div>
+        <h2 class="font-serif font-semibold text-xl text-cream">Sipariş Özeti</h2>
+        <p class="text-xs text-stoneMuted mt-0.5">Chef Simo Kitchen · WhatsApp Hızlı Sipariş</p>
+      </div>
+      <button type="button" id="close-drawer-btn" class="w-10 h-10 rounded-xl bg-oliveElevated border border-white/10 text-cream hover:border-copper flex items-center justify-center transition-colors" aria-label="Sepeti Kapat">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+      </button>
+    </div>
+
+    <!-- Sepet Ürün Listesi -->
+    <div id="drawer-items" class="flex-1 overflow-y-auto px-6 py-5 space-y-3.5">
+      <!-- JS tarafından doldurulur -->
+    </div>
+
+    <!-- Sipariş Tipi, Not ve WhatsApp Gönder Butonu -->
+    <div id="drawer-footer" class="p-6 border-t border-white/10 bg-obsidian/70 space-y-4">
+      <!-- Teslimat Tercihi -->
+      <div>
+        <span class="block text-xs font-semibold text-stoneMuted mb-2">Sipariş Türü</span>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-order-type="Paket Servis" class="order-type-btn py-2.5 rounded-xl text-xs font-bold bg-copper text-obsidian transition-colors">Paket Servis</button>
+          <button type="button" data-order-type="Gel-Al" class="order-type-btn py-2.5 rounded-xl text-xs font-semibold bg-oliveElevated text-cream/80 border border-white/10 hover:border-copper/40 transition-colors">Gel-Al</button>
+          <button type="button" data-order-type="Restoranda" class="order-type-btn py-2.5 rounded-xl text-xs font-semibold bg-oliveElevated text-cream/80 border border-white/10 hover:border-copper/40 transition-colors">Restoranda</button>
+        </div>
+      </div>
+
+      <!-- Müşteri Notu -->
+      <div>
+        <label for="order-note" class="block text-xs font-semibold text-stoneMuted mb-1.5">Sipariş / Adres Notu (Opsiyonel)</label>
+        <input type="text" id="order-note" placeholder="Örn: Soslar ayrı olsun, Büyükdere Mah..." class="w-full px-3.5 py-2.5 rounded-xl bg-oliveElevated border border-white/10 focus:border-copper focus:outline-none text-xs sm:text-sm text-cream placeholder:text-stoneMuted/60" />
+      </div>
+
+      <!-- Toplam & Aksiyonlar -->
+      <div class="flex items-center justify-between pt-1">
+        <span class="text-sm text-stoneMuted">Tahmini Toplam</span>
+        <span id="drawer-total" class="font-serif font-bold text-2xl text-amberGold">₺0</span>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button type="button" id="clear-cart-btn" class="px-4 py-3.5 rounded-xl bg-oliveElevated hover:bg-red-950/50 border border-white/10 hover:border-red-500/40 text-stoneMuted hover:text-red-300 text-xs font-semibold transition-colors">
+          Temizle
+        </button>
+        <a id="whatsapp-checkout-link" href="https://wa.me/905465492602" target="_blank" rel="noopener noreferrer" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-gradient-to-r from-copper to-amberGold hover:from-copperHover hover:to-copper text-obsidian font-bold text-sm shadow-lg shadow-copper/25 transition-all active:scale-[0.98]">
+          <span>WhatsApp ile Sipariş Gönder</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== BİLDİRİM TOAST (ALERT KULLANILMAZ) ==================== -->
+  <div id="toast-notification" class="fixed top-24 right-4 sm:right-6 z-50 px-4 py-3 rounded-xl bg-oliveElevated border border-copper/50 text-cream text-xs sm:text-sm font-medium shadow-2xl transform translate-x-[120%] opacity-0 transition-all duration-300 flex items-center gap-2.5 pointer-events-none">
+    <span class="w-2 h-2 rounded-full bg-amberGold"></span>
+    <span id="toast-text">Sepete eklendi</span>
+  </div>
+
+  <!-- ==================== UYGULAMA MANTIĞI & ANİMASYONLAR ==================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* --------------------------------------------------------
+       * 1. MENÜ VERİLERİ (Google Maps Gerçek Ürünleri + Şef Seçkisi)
+       * -------------------------------------------------------- */
+      const MENU_DATA = [
+        {
+          id: 'double-mantarli-burger',
+          name: 'Double Mantarlı Şef Burger',
+          price: 440,
+          desc: 'Çift kat mühürlü dana köfte, kremalı sote mantar, erimiş cheddar, çıtır patates ve özel dip sos.',
+          categories: ['featured', 'burger-tacos'],
+          badge: 'Şefin Tavsiyesi',
+          badgeType: 'gold',
+          image: './chef simo kitchen.png',
+          fallback: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80',
+        },
+        {
+          id: 'kahvalti-menu',
+          name: 'Kahvaltı Menü',
+          price: 300,
+          desc: 'Taze yeşillikler, seçme zeytinler, sıcacık gözleme/tost dokunuşu ve günün eşlikçileriyle zengin şef kahvaltısı.',
+          categories: ['featured', 'breakfast-sandwich'],
+          badge: 'En Çok Tercih Edilen',
+          badgeType: 'copper',
+          image: './chef simo kitchen-2.webp',
+          fallback: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=500&q=80',
+        },
+        {
+          id: 'izgara-kofte-sandvic',
+          name: 'Izgara Köfte Sandviç',
+          price: 430,
+          desc: 'Özel baharatlı ızgara dana köfte, taze çıtır ekmek, karamelize dokunuşlar ve şef sosuyla doyurucu lezzet.',
+          categories: ['featured', 'breakfast-sandwich'],
+          badge: 'En Çok Tercih Edilen',
+          badgeType: 'copper',
+        },
+        {
+          id: 'pesto-penne',
+          name: 'Pesto Soslu Penne Makarna',
+          price: 390,
+          desc: 'Taze fesleğenli aromatik pesto sosu, al dente penne makarna ve rendelenmiş peynir dengesi.',
+          categories: ['featured', 'pasta-bowl'],
+          badge: 'Şefin Tavsiyesi',
+          badgeType: 'gold',
+        },
+        {
+          id: 'sezar-salata',
+          name: 'Sezar Salata',
+          price: 450,
+          desc: 'Çıtır marul yaprakları, ızgara tavuk dilimleri, kruton, parmesan ve özgün Sezar sos.',
+          categories: ['featured', 'pasta-bowl'],
+          badge: 'En Çok Tercih Edilen',
+          badgeType: 'copper',
+        },
+        {
+          id: 'muzlu-mag',
+          name: 'Muzlu Mag',
+          price: 250,
+          desc: 'İpeksi muhallebi, taze muz dilimleri ve kıtır bisküvi katmanlarıyla hafif, ağızda eriyen imza tatlı.',
+          categories: ['featured', 'dessert-drinks'],
+          badge: 'Şefin Tavsiyesi',
+          badgeType: 'gold',
+        },
+        {
+          id: 'penne-arrabbiata',
+          name: 'Penne Arrabbiata',
+          price: 370,
+          desc: 'Hafif acılı özel domates sosu, sarımsak aroması ve taze baharatlarla harmanlanmış klasik İtalyan lezzeti.',
+          categories: ['pasta-bowl'],
+          badge: '',
+          badgeType: '',
+        },
+        {
+          id: 'tavuklu-french-tacos',
+          name: 'Tavuklu French Tacos',
+          price: 360,
+          desc: 'Kızarmış tortilla içinde özel baharatlı ızgara tavuk, çıtır patates ve akışkan peynir sosu.',
+          categories: ['burger-tacos'],
+          badge: '',
+          badgeType: '',
+        },
+        {
+          id: 'etli-chef-wrap',
+          name: 'Etli Chef Wrap',
+          price: 395,
+          desc: 'Yumuşacık lavaşta mühürlenmiş dana dilimleri, sotelenmiş renkli biberler ve imza sos.',
+          categories: ['burger-tacos'],
+          badge: '',
+          badgeType: '',
+        },
+        {
+          id: 'sporcu-protein-bowl',
+          name: 'Sporcu Protein Bowl',
+          price: 410,
+          desc: 'Yüksek proteinli ızgara tavuk göğsü, basmati pirinç, mevsim yeşillikleri ve dengeli makrolar.',
+          categories: ['pasta-bowl'],
+          badge: 'Sporcu Menüsü',
+          badgeType: 'olive',
+        },
+        {
+          id: 'cocuk-menusu',
+          name: 'Çocuk Menüsü (Mini Burger & Patates)',
+          price: 260,
+          desc: 'Katkısız mini ızgara köfte burger, altın sarısı patates kızartması ve ayran eşliğinde.',
+          categories: ['burger-tacos', 'breakfast-sandwich'],
+          badge: 'Çocuk Dostu',
+          badgeType: 'olive',
+        },
+        {
+          id: 'ev-limonata',
+          name: 'Taze Naneli Ev Limonata',
+          price: 115,
+          desc: 'Günlük sıkılmış limon ve taze nane yapraklarıyla ferahlatıcı bistro eşlikçisi.',
+          categories: ['dessert-drinks'],
+          badge: '',
+          badgeType: '',
+        },
+        {
+          id: 'ayran-mesrubat',
+          name: 'Yayık Ayran / Meşrubatlar',
+          price: 75,
+          desc: 'Bol köpüklü soğuk ayran veya dilediğiniz soğuk içecek seçenekleri.',
+          categories: ['dessert-drinks'],
+          badge: '',
+          badgeType: '',
+        },
+      ];
+
+      /* Uygulama Durumu (State) */
+      const cart = {};
+      let activeCategory = 'featured';
+      let searchQuery = '';
+      let selectedOrderType = 'Paket Servis';
+      let toastTimer = null;
+
+      /* DOM Referansları */
+      const menuGrid = document.getElementById('menu-grid');
+      const menuEmpty = document.getElementById('menu-empty');
+      const searchInput = document.getElementById('menu-search');
+      const resetSearchBtn = document.getElementById('reset-search-btn');
+      const tabButtons = document.querySelectorAll('.menu-tab');
+
+      const navCartBtn = document.getElementById('nav-cart-btn');
+      const navCartBadge = document.getElementById('nav-cart-badge');
+      const floatingPill = document.getElementById('floating-cart-pill');
+      const openDrawerFromPill = document.getElementById('open-drawer-from-pill');
+      const pillCount = document.getElementById('pill-count');
+      const pillTotal = document.getElementById('pill-total');
+
+      const drawerOverlay = document.getElementById('cart-drawer-overlay');
+      const cartDrawer = document.getElementById('cart-drawer');
+      const closeDrawerBtn = document.getElementById('close-drawer-btn');
+      const drawerItems = document.getElementById('drawer-items');
+      const drawerFooter = document.getElementById('drawer-footer');
+      const drawerTotal = document.getElementById('drawer-total');
+      const orderNoteInput = document.getElementById('order-note');
+      const orderTypeBtns = document.querySelectorAll('.order-type-btn');
+      const clearCartBtn = document.getElementById('clear-cart-btn');
+      const whatsappCheckoutLink = document.getElementById('whatsapp-checkout-link');
+
+      const toastEl = document.getElementById('toast-notification');
+      const toastText = document.getElementById('toast-text');
+
+      /* --------------------------------------------------------
+       * 2. YARDIMCI FONKSİYONLAR
+       * -------------------------------------------------------- */
+      function formatTRY(amount) {
+        return '₺' + amount.toLocaleString('tr-TR');
+      }
+
+      function showToast(msg) {
+        if (!toastEl || !toastText) return;
+        toastText.textContent = msg;
+        toastEl.classList.remove('translate-x-[120%]', 'opacity-0');
+        toastEl.classList.add('translate-x-0', 'opacity-100');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastEl.classList.add('translate-x-[120%]', 'opacity-0');
+          toastEl.classList.remove('translate-x-0', 'opacity-100');
+        }, 2100);
+      }
+
+      function getBadgeHtml(badge, type) {
+        if (!badge) return '';
+        let classes = 'bg-copper/15 text-amberGold border-copper/35';
+        if (type === 'gold') {
+          classes = 'bg-amberGold/15 text-amberGold border-amberGold/40';
+        } else if (type === 'olive') {
+          classes = 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+        }
+        return `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${classes}">${badge}</span>`;
+      }
+
+      /* --------------------------------------------------------
+       * 3. MENÜYÜ FİLTRELE VE EKRANA ÇİZ
+       * -------------------------------------------------------- */
+      function renderMenu() {
+        const q = searchQuery.trim().toLocaleLowerCase('tr-TR');
+
+        const filtered = MENU_DATA.filter((item) => {
+          if (q.length > 0) {
+            return (
+              item.name.toLocaleLowerCase('tr-TR').includes(q) ||
+              item.desc.toLocaleLowerCase('tr-TR').includes(q) ||
+              item.badge.toLocaleLowerCase('tr-TR').includes(q)
+            );
+          }
+          return item.categories.includes(activeCategory);
+        });
+
+        if (filtered.length === 0) {
+          menuGrid.innerHTML = '';
+          menuEmpty.classList.remove('hidden');
+          return;
+        }
+
+        menuEmpty.classList.add('hidden');
+
+        menuGrid.innerHTML = filtered
+          .map((item, idx) => {
+            const qty = cart[item.id] || 0;
+
+            const thumbHtml = item.image
+              ? `<div class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden bg-obsidian border border-white/10 shrink-0 relative">
+                   <img
+                     src="${item.image}"
+                     alt="${item.name}"
+                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                     onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src='${item.fallback}';}else{this.onerror=null;this.src='https://placehold.co/300x300/141816/E5A952?text=Chef+Simo';}"
+                   />
+                 </div>`
+              : '';
+
+            const actionHtml =
+              qty === 0
+                ? `<button type="button" data-action="add" data-id="${item.id}" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-oliveElevated hover:bg-copper text-cream hover:text-obsidian border border-white/10 hover:border-copper text-xs font-bold transition-all active:scale-95">
+                     <span>+ Siparişe Ekle</span>
+                   </button>`
+                : `<div class="inline-flex items-center gap-1.5 bg-obsidian border border-copper/45 rounded-xl p-1">
+                     <button type="button" data-action="dec" data-id="${item.id}" class="w-8 h-8 rounded-lg hover:bg-white/10 text-cream flex items-center justify-center font-bold text-base transition-colors" aria-label="Azalt">−</button>
+                     <span class="min-w-[1.5rem] text-center text-xs font-bold text-amberGold">${qty}</span>
+                     <button type="button" data-action="inc" data-id="${item.id}" class="w-8 h-8 rounded-lg bg-copper hover:bg-copperHover text-obsidian flex items-center justify-center font-bold text-base transition-colors" aria-label="Artır">+</button>
+                   </div>`;
+
+            return `
+              <article class="menu-enter group rounded-2xl bg-oliveSurface/90 hover:bg-oliveElevated/90 border border-white/10 hover:border-copper/40 p-4 sm:p-5 transition-all duration-300 hover:-translate-y-0.5 shadow-md flex gap-4" style="animation-delay: ${Math.min(idx * 45, 250)}ms">
+                ${thumbHtml}
+                <div class="flex-1 min-w-0 flex flex-col justify-between gap-3">
+                  <div>
+                    <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                      <h3 class="font-serif font-semibold text-lg sm:text-[1.2rem] text-cream leading-snug">${item.name}</h3>
+                      ${getBadgeHtml(item.badge, item.badgeType)}
+                    </div>
+                    <p class="text-xs sm:text-sm text-stoneMuted leading-relaxed">${item.desc}</p>
+                  </div>
+                  <div class="flex items-center justify-between gap-3 pt-2.5 border-t border-white/5">
+                    <span class="font-sans font-bold text-lg text-amberGold tracking-tight">${formatTRY(item.price)}</span>
+                    ${actionHtml}
+                  </div>
+                </div>
+              </article>
+            `;
+          })
+          .join('');
+      }
+
+      /* --------------------------------------------------------
+       * 4. SEPET DURUMU & WHATSAPP MESAJI OLUŞTURUCU
+       * -------------------------------------------------------- */
+      function buildWhatsappLink(lines, totalPrice) {
+        const note = orderNoteInput ? orderNoteInput.value.trim() : '';
+        let msg = `Merhaba Chef Simo Kitchen, web sitenizden sipariş vermek istiyorum:\n\n`;
+        msg += lines.join('\n');
+        msg += `\n\nSipariş Türü: ${selectedOrderType}`;
+        msg += `\nTahmini Toplam: ${formatTRY(totalPrice)}`;
+        if (note) {
+          msg += `\nNot / Adres: ${note}`;
+        }
+        return `https://wa.me/905465492602?text=${encodeURIComponent(msg)}`;
+      }
+
+      function syncCartUI() {
+        let totalQty = 0;
+        let totalPrice = 0;
+        const lines = [];
+        const activeItems = [];
+
+        MENU_DATA.forEach((item) => {
+          const q = cart[item.id] || 0;
+          if (q > 0) {
+            totalQty += q;
+            totalPrice += q * item.price;
+            lines.push(`• ${q}x ${item.name} (${formatTRY(q * item.price)})`);
+            activeItems.push({ ...item, qty: q });
+          }
+        });
+
+        // Navbar Sepet Rozeti
+        if (totalQty > 0) {
+          navCartBadge.textContent = String(totalQty);
+          navCartBadge.classList.remove('hidden');
+        } else {
+          navCartBadge.classList.add('hidden');
+        }
+
+        // Alt Yüzen Sipariş Çubuğu
+        if (totalQty > 0) {
+          pillCount.textContent = String(totalQty);
+          pillTotal.textContent = formatTRY(totalPrice);
+          floatingPill.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
+          floatingPill.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        } else {
+          floatingPill.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
+          floatingPill.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+        }
+
+        // Çekmece İçeriği
+        if (activeItems.length === 0) {
+          drawerItems.innerHTML = `
+            <div class="h-full flex flex-col items-center justify-center text-center py-12 px-4">
+              <div class="w-16 h-16 rounded-2xl bg-oliveElevated border border-white/10 flex items-center justify-center text-stoneMuted mb-4">
+                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" /><path d="M3 6h18" /><path d="M16 10a4 4 0 0 1-8 0" /></svg>
+              </div>
+              <p class="font-serif text-lg text-cream">Sepetiniz şu an boş</p>
+              <p class="text-xs text-stoneMuted mt-1 max-w-xs">Menüden dilediğiniz lezzetleri ekleyip tek tıkla WhatsApp üzerinden sipariş oluşturabilirsiniz.</p>
+            </div>
+          `;
+          drawerFooter.classList.add('hidden');
+        } else {
+          drawerFooter.classList.remove('hidden');
+          drawerItems.innerHTML = activeItems
+            .map(
+              (item) => `
+              <div class="rounded-2xl bg-oliveElevated/90 border border-white/10 p-4 flex items-center justify-between gap-3">
+                <div class="min-w-0">
+                  <h4 class="font-semibold text-sm text-cream truncate">${item.name}</h4>
+                  <p class="text-xs text-amberGold font-semibold mt-0.5">${formatTRY(item.price)} × ${item.qty} = ${formatTRY(item.price * item.qty)}</p>
+                </div>
+                <div class="inline-flex items-center gap-1.5 bg-obsidian border border-white/10 rounded-xl p-1 shrink-0">
+                  <button type="button" data-drawer-action="dec" data-id="${item.id}" class="w-7 h-7 rounded-lg hover:bg-white/10 text-cream flex items-center justify-center font-bold" aria-label="Azalt">−</button>
+                  <span class="min-w-[1.25rem] text-center text-xs font-bold text-cream">${item.qty}</span>
+                  <button type="button" data-drawer-action="inc" data-id="${item.id}" class="w-7 h-7 rounded-lg bg-copper text-obsidian flex items-center justify-center font-bold" aria-label="Artır">+</button>
+                </div>
+              </div>
+            `
+            )
+            .join('');
+
+          drawerTotal.textContent = formatTRY(totalPrice);
+          whatsappCheckoutLink.href = buildWhatsappLink(lines, totalPrice);
+        }
+      }
+
+      /* --------------------------------------------------------
+       * 5. ÇEKMECE AÇMA / KAPAMA
+       * -------------------------------------------------------- */
+      function openDrawer() {
+        syncCartUI();
+        drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        drawerOverlay.classList.add('opacity-100', 'pointer-events-auto');
+        cartDrawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeDrawer() {
+        drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+        drawerOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+        cartDrawer.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+
+      /* --------------------------------------------------------
+       * 6. OLAY DİNLEYİCİLERİ (EVENT LISTENERS)
+       * -------------------------------------------------------- */
+      // Menü kartı + / - tıklamaları
+      menuGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const { action, id } = btn.dataset;
+        const itemObj = MENU_DATA.find((m) => m.id === id);
+
+        if (action === 'add' || action === 'inc') {
+          cart[id] = (cart[id] || 0) + 1;
+          if (action === 'add' && itemObj) {
+            showToast(`${itemObj.name} sepete eklendi`);
+          }
+        } else if (action === 'dec') {
+          cart[id] = Math.max(0, (cart[id] || 0) - 1);
+          if (cart[id] === 0) delete cart[id];
+        }
+
+        renderMenu();
+        syncCartUI();
+      });
+
+      // Çekmece içi + / - tıklamaları
+      drawerItems.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-drawer-action]');
+        if (!btn) return;
+        const { drawerAction, id } = btn.dataset;
+
+        if (drawerAction === 'inc') {
+          cart[id] = (cart[id] || 0) + 1;
+        } else if (drawerAction === 'dec') {
+          cart[id] = Math.max(0, (cart[id] || 0) - 1);
+          if (cart[id] === 0) delete cart[id];
+        }
+
+        renderMenu();
+        syncCartUI();
+      });
+
+      // Kategori sekme geçişleri
+      tabButtons.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          activeCategory = tab.dataset.category;
+          searchQuery = '';
+          if (searchInput) searchInput.value = '';
+
+          tabButtons.forEach((b) => {
+            b.classList.remove('bg-copper', 'text-obsidian', 'shadow-lg', 'shadow-copper/20');
+            b.classList.add('bg-oliveSurface', 'text-cream/80', 'border', 'border-white/10');
+          });
+
+          tab.classList.add('bg-copper', 'text-obsidian', 'shadow-lg', 'shadow-copper/20');
+          tab.classList.remove('bg-oliveSurface', 'text-cream/80', 'border', 'border-white/10');
+
+          renderMenu();
+        });
+      });
+
+      // Canlı arama
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          renderMenu();
+        });
+      }
+
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', () => {
+          searchQuery = '';
+          searchInput.value = '';
+          renderMenu();
+        });
+      }
+
+      // Çekmece kontrolleri
+      if (navCartBtn) navCartBtn.addEventListener('click', openDrawer);
+      if (openDrawerFromPill) openDrawerFromPill.addEventListener('click', openDrawer);
+      if (closeDrawerBtn) closeDrawerBtn.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeDrawer();
+      });
+
+      // Sipariş türü seçimi (Paket Servis / Gel-Al / Restoranda)
+      orderTypeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          selectedOrderType = btn.dataset.orderType;
+          orderTypeBtns.forEach((b) => {
+            b.classList.remove('bg-copper', 'text-obsidian', 'font-bold');
+            b.classList.add('bg-oliveElevated', 'text-cream/80', 'border', 'border-white/10', 'font-semibold');
+          });
+          btn.classList.add('bg-copper', 'text-obsidian', 'font-bold');
+          btn.classList.remove('bg-oliveElevated', 'text-cream/80', 'border', 'border-white/10', 'font-semibold');
+          syncCartUI();
+        });
+      });
+
+      // Sipariş notu değişince WhatsApp linkini anlık güncelle
+      if (orderNoteInput) {
+        orderNoteInput.addEventListener('input', syncCartUI);
+      }
+
+      // Sepeti temizle
+      if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', () => {
+          Object.keys(cart).forEach((key) => delete cart[key]);
+          renderMenu();
+          syncCartUI();
+          showToast('Sipariş sepeti temizlendi');
+        });
+      }
+
+      // Mobil Hamburger Menü
+      const mobileToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconHamburger = document.getElementById('icon-hamburger');
+      const iconClose = document.getElementById('icon-close');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileToggle && mobileMenu) {
+        mobileToggle.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden');
+          iconHamburger.classList.toggle('hidden');
+          iconClose.classList.toggle('hidden');
+          mobileToggle.setAttribute('aria-expanded', String(!isOpen));
+        });
+
+        mobileLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            iconHamburger.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      /* --------------------------------------------------------
+       * 7. SCROLL-REVEAL & NAVBAR GLASSMORPHISM EFEKTİ
+       * -------------------------------------------------------- */
+      function initScrollEffects() {
+        const reveals = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+          );
+          reveals.forEach((el) => observer.observe(el));
+        } else {
+          reveals.forEach((el) => el.classList.add('visible'));
+        }
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener(
+          'scroll',
+          () => {
+            if (window.scrollY > 24) {
+              navbar.classList.add('bg-obsidian/92', 'shadow-2xl', 'border-white/10');
+              navbar.classList.remove('bg-obsidian/65', 'border-white/5');
+            } else {
+              navbar.classList.remove('bg-obsidian/92', 'shadow-2xl', 'border-white/10');
+              navbar.classList.add('bg-obsidian/65', 'border-white/5');
+            }
+          },
+          { passive: true }
+        );
+      }
+
+      // İlk yükleme başlatma
+      renderMenu();
+      syncCartUI();
+      initScrollEffects();
+    })();
+  </script>
+</body>
+</html>
